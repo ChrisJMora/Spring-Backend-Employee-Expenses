@@ -1,4 +1,4 @@
-package com.example.demo.model.httpResponse;
+package com.business.employee.expenses.models.httpResponse;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

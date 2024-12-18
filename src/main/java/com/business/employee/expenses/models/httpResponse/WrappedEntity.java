@@ -1,10 +1,9 @@
-package com.example.demo.model.httpResponse;
-
+package com.business.employee.expenses.models.httpResponse;
 import lombok.Getter;
 
 @Getter
 public class WrappedEntity<T> extends ApiResult {
-    private T data;
+    private final T data;
 
     public WrappedEntity(T data) {
         super(ResponseStatus.SUCCESS);
