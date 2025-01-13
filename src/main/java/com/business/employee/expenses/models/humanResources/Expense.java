@@ -1,5 +1,4 @@
 package com.business.employee.expenses.models.humanResources;
-
 import com.business.employee.expenses.utils.converters.ExpenseTypeConverter;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -30,4 +29,8 @@ public class Expense {
     private LocalDate date;
     @Column(name = "expense_created_at")
     private LocalDateTime createdAt;
+
+    @ManyToOne
+    @JoinColumn(name = "employee_id")
+    private Employee employee;
 }

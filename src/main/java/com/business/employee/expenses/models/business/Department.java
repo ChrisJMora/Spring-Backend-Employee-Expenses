@@ -1,5 +1,6 @@
 package com.business.employee.expenses.models.business;
 
+import com.business.employee.expenses.models.humanResources.Employee;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -27,4 +29,7 @@ public class Department {
     private String email;
     @Column(name = "department_created_at")
     private LocalDateTime createdAt;
+
+    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Employee> employees;
 }
