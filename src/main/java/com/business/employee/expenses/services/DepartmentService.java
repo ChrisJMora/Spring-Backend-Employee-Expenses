@@ -3,5 +3,6 @@ package com.business.employee.expenses.services;
 import com.business.employee.expenses.models.business.Department;
 
 public interface DepartmentService {
-    double getDepartmentExpenses(Department department);
+    Department getDepartmentById(Long id);
+    double getDepartmentExpenses(Long id);
 }
