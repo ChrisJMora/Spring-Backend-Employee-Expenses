@@ -1,5 +1,6 @@
 package com.business.employee.expenses.controllers;
 
+import com.business.employee.expenses.dto.TimeSpan;
 import com.business.employee.expenses.exceptions.EmptyRecordException;
 import com.business.employee.expenses.exceptions.EmptyTableException;
 import com.business.employee.expenses.models.httpResponse.ApiResult;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,10 +25,14 @@ public class DepartmentController {
     private DepartmentService service;
 
     @GetMapping("/expenses")
-    ResponseEntity<ApiResult> getDepartmentExpenses()
+    ResponseEntity<ApiResult> getDepartmentExpenses(@RequestBody TimeSpan timeSpan)
     {
         try {
-            return  ResponseEntity.ok(new WrappedEntity<>(service.getAllDepartmentExpenses()));
+            return  ResponseEntity.ok(new WrappedEntity<>(
+                    service.getAllDepartmentExpensesByTimeSpan(
+                            timeSpan.getStartDate(),
+                            timeSpan.getEndDate()
+                    )));
         } catch (EmptyTableException | EmptyRecordException ex) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(new Error(ex.getMessage()));

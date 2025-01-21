@@ -8,6 +8,6 @@ import lombok.Setter;
 @Getter @Setter
 @AllArgsConstructor
 public class DepartmentExpenses {
-    private Department department;
+    private DepartmentDTO department;
     private double expenses;
 }
