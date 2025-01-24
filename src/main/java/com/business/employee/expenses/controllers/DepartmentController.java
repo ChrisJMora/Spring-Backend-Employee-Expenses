@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @RequestMapping("department")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "https://demo-business-site.netlify.app/")
 public class DepartmentController {
 
     @Autowired
