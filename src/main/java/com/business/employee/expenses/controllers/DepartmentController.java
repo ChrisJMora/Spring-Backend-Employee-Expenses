@@ -11,24 +11,21 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
 @RequestMapping("department")
+@CrossOrigin(origins = "http://localhost:5173")
 public class DepartmentController {
 
     @Autowired
     private DepartmentService service;
 
-    @GetMapping("/expenses")
-    ResponseEntity<ApiResult> getDepartmentExpenses(@RequestBody TimeSpan timeSpan)
-    {
+    @PostMapping("/expenses")
+    ResponseEntity<ApiResult> getDepartmentExpenses(@RequestBody TimeSpan timeSpan) {
         try {
-            return  ResponseEntity.ok(new WrappedEntity<>(
+            return ResponseEntity.ok(new WrappedEntity<>(
                     service.getAllDepartmentExpensesByTimeSpan(
                             timeSpan.getStartDate(),
                             timeSpan.getEndDate()
